@@ -1,0 +1,31 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ca.gearzero.rgc";
+option java_outer_classname = "RGCProto";
+
+import "user_model.proto";
+
+package rgc;
+
+service UserService {
+    rpc GetUserFlags (GetUserFlagsRequest) returns (GetUserFlagsReply) {}
+    rpc GetUserCredential (GetUserCredentialRequest) returns (GetUserCredentialReply) {}
+}
+
+message GetUserCredentialRequest {
+    string uuid = 1;
+}
+
+message GetUserCredentialReply {
+    UserCredential user_credential = 1;
+}
+
+message GetUserFlagsRequest {
+    string uuid = 1;
+}
+
+message GetUserFlagsReply {
+    UserFlags user_flags = 1;
+}

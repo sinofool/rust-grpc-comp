@@ -1,0 +1,18 @@
+[package]
+name = "rgc"
+description = "Rust gRPC server"
+version = "0.1.0"
+authors = ["Bochun Bai <bbc@gearzero.ca>"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+futures = "0.1.16"
+grpcio = "0.4.3"
+protobuf = "2"
+
+log = "0.4"
+log4rs = "0.10.0"
+
+[build-dependencies]
+protoc-grpcio = "1.1.0"

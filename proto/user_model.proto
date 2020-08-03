@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ca.gearzero.rgc";
+option java_outer_classname = "UserServiceProto";
+
+package rgc;
+
+message UserCredential {
+    string uuid = 1;
+    string email = 2;
+    string password_salt = 3;
+    string password_hash = 4;
+    int32 status_flag = 5;
+    int32 permission_flag = 6;
+    int64 date_created = 7;
+}
+
+message UserFlags {
+    string uuid = 1;
+    int32 status_flag = 2;
+    int32 permission_flag = 3;
+}
