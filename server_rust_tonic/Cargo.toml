@@ -1,0 +1,15 @@
+[package]
+name = "rgc"
+description = "Rust gRPC server"
+version = "0.1.0"
+authors = ["Bochun Bai <bbc@gearzero.ca>"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+tonic = "0.3"
+prost = "0.6"
+tokio = { version = "0.2", features = ["macros"] }
+
+[build-dependencies]
+tonic-build = "0.3"

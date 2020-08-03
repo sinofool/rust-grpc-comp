@@ -1,0 +1,18 @@
+[package]
+name = "rgc"
+description = "Rust gRPC server"
+version = "0.1.0"
+authors = ["Bochun Bai <bbc@gearzero.ca>"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+grpc = "0.8"
+grpc-protobuf = "0.8"
+protobuf = "2"
+futures = "0.3"
+httpbis = { git = "https://github.com/stepancheg/rust-http2" }
+
+[build-dependencies]
+protoc-rust-grpc = "0.8"
+
