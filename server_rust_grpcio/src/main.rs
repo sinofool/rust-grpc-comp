@@ -31,7 +31,15 @@ struct UserServiceImpl<'s> {
 
 impl UserService for UserServiceImpl<'_> {
     fn get_user_flags(&mut self, ctx: RpcContext<'_>, req: GetUserFlagsRequest, sink: UnarySink<GetUserFlagsReply>) {
-        let user = &self.cache[0];
+        let user = User {
+            uuid: "6daf4c42-7aa2-4a50-9d97-6b1c8956ac3a",
+            email: "bbc@gearzero.ca",
+            password_salt: "RPyotOip",
+            password_hash: "wSxINtwWzJiwsBeleBtmJVBuARLihvLbelAlhhnIULqxgSmq",
+            status_flag: 256 + 128 + 8 + 1,
+            permission_flag: 4 + 1024,
+            date_created: 1577678540_000,
+        };
         let mut reply = GetUserFlagsReply::default();
         reply.mut_user_flags().set_uuid(req.get_uuid().to_string());
         reply.mut_user_flags().set_permission_flag(user.permission_flag);
@@ -41,7 +49,15 @@ impl UserService for UserServiceImpl<'_> {
     }
 
     fn get_user_credential(&mut self, ctx: RpcContext<'_>, req: GetUserCredentialRequest, sink: UnarySink<GetUserCredentialReply>) {
-        let user = &self.cache[0];
+        let user = User {
+            uuid: "6daf4c42-7aa2-4a50-9d97-6b1c8956ac3a",
+            email: "bbc@gearzero.ca",
+            password_salt: "RPyotOip",
+            password_hash: "wSxINtwWzJiwsBeleBtmJVBuARLihvLbelAlhhnIULqxgSmq",
+            status_flag: 256 + 128 + 8 + 1,
+            permission_flag: 4 + 1024,
+            date_created: 1577678540_000,
+        };
         let mut reply = GetUserCredentialReply::default();
         reply.mut_user_credential().set_uuid(req.get_uuid().to_string());
         reply.mut_user_credential().set_email(user.email.to_string());

@@ -17,7 +17,8 @@ public class GetUserCredentialTask implements Runnable {
     @Override
     public void run() {
         while (--repeat > 0) {
-            client.getUserCredential(key);
+            String uc = client.getUserCredential(key);
+            assert("bbc@gearzero.ca".equals(uc));
         }
     }
 }

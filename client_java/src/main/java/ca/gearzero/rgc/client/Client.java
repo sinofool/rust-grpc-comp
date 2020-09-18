@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Client {
-    private static final int CONN_SIZE = Runtime.getRuntime().availableProcessors();
+    private static final int CONN_SIZE = Runtime.getRuntime().availableProcessors() * 2;
 
     private static final int REPEAT = 1000;
 
@@ -31,7 +31,7 @@ public class Client {
             long userCredentialTotal = 0;
             do {
                 {
-                    ExecutorService pool = Executors.newFixedThreadPool(CONN_SIZE);
+                    ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
                     long start = System.nanoTime();
 
                     for (int repeat = 0; repeat < REPEAT; ++repeat) {
@@ -51,7 +51,7 @@ public class Client {
                     System.out.println(String.format("GetUserFlagsTask %d tasks, each task %d ops, number of channels %d, time %dms", REPEAT, BATCH, CONN_SIZE, time));
                 }
                 {
-                    ExecutorService pool = Executors.newFixedThreadPool(8);
+                    ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
                     long start = System.nanoTime();
                     for (int repeat = 0; repeat < REPEAT; ++repeat) {
                         String key = "UID_" + repeat;
@@ -69,7 +69,7 @@ public class Client {
                     }
                     System.out.println(String.format("GetUserCredentialTask %d tasks, each task %d ops, number of channels %d, time %dms", REPEAT, BATCH, CONN_SIZE, time));
                 }
-            } while (loop++ < 3);
+            } while (loop++ < 5);
             System.out.println(String.format("GetUserFlagsTask average: %dms", userFlagsTotal / (loop - 1)));
             System.out.println(String.format("GetUserCredentialTask average: %dms", userCredentialTotal / (loop - 1)));
         } finally {

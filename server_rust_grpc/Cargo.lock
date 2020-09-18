@@ -180,7 +180,7 @@ dependencies = [
  "base64",
  "bytes",
  "futures",
- "httpbis 0.9.1",
+ "httpbis",
  "log",
  "log-ndc",
  "tls-api",
@@ -225,23 +225,6 @@ dependencies = [
  "tls-api-stub",
  "tokio",
  "unix_socket",
- "void",
-]
-
-[[package]]
-name = "httpbis"
-version = "0.10.0-pre"
-source = "git+https://github.com/stepancheg/rust-http2#728fb0df2fb6126388396764826b86e1aa534d02"
-dependencies = [
- "bytes",
- "futures",
- "log",
- "log-ndc",
- "net2",
- "rand 0.5.6",
- "tls-api",
- "tls-api-stub",
- "tokio",
  "void",
 ]
 
@@ -592,7 +575,6 @@ dependencies = [
  "futures",
  "grpc",
  "grpc-protobuf",
- "httpbis 0.10.0-pre",
  "protobuf",
  "protoc-rust-grpc",
 ]

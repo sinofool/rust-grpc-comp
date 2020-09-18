@@ -63,7 +63,7 @@ fn main() {
     let mut server = grpc::ServerBuilder::new_plain();
     server.http.set_port(50051);
     server.add_service(UserServiceServer::new_service_def(svc));
-    // server.http.set_cpu_pool_threads(4);
+    
     let _server = server.build().expect("server");
 
     println!("Server started");

@@ -1,4 +1,4 @@
-use rgc::{GetUserCredentialReply, GetUserCredentialRequest, GetUserFlagsReply, GetUserFlagsRequest,UserCredential,UserFlags};
+use rgc::{GetUserCredentialReply, GetUserCredentialRequest, GetUserFlagsReply, GetUserFlagsRequest, UserCredential, UserFlags};
 use rgc::user_service_server::{UserService, UserServiceServer};
 
 pub mod rgc {
@@ -27,7 +27,15 @@ impl UserService for UserServiceImpl<'static> {
         &self,
         req: tonic::Request<GetUserFlagsRequest>,
     ) -> Result<tonic::Response<GetUserFlagsReply>, tonic::Status> {
-        let user = &self.cache[0];
+        let user = User {
+            uuid: "6daf4c42-7aa2-4a50-9d97-6b1c8956ac3a",
+            email: "bbc@gearzero.ca",
+            password_salt: "RPyotOip",
+            password_hash: "wSxINtwWzJiwsBeleBtmJVBuARLihvLbelAlhhnIULqxgSmq",
+            status_flag: 256 + 128 + 8 + 1,
+            permission_flag: 4 + 1024,
+            date_created: 1577678540_000,
+        };
         let reply = GetUserFlagsReply {
             user_flags: Some(UserFlags {
                 uuid: req.into_inner().uuid,
@@ -41,7 +49,15 @@ impl UserService for UserServiceImpl<'static> {
         &self,
         req: tonic::Request<GetUserCredentialRequest>,
     ) -> Result<tonic::Response<GetUserCredentialReply>, tonic::Status> {
-        let user = &self.cache[0];
+        let user = User {
+            uuid: "6daf4c42-7aa2-4a50-9d97-6b1c8956ac3a",
+            email: "bbc@gearzero.ca",
+            password_salt: "RPyotOip",
+            password_hash: "wSxINtwWzJiwsBeleBtmJVBuARLihvLbelAlhhnIULqxgSmq",
+            status_flag: 256 + 128 + 8 + 1,
+            permission_flag: 4 + 1024,
+            date_created: 1577678540_000,
+        };
         let reply = GetUserCredentialReply {
             user_credential: Some(UserCredential {
                 uuid: req.into_inner().uuid,
@@ -72,11 +88,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             date_created: 1577678540_000,
         }),
     };
-
+    println!("Server starting");
     tonic::transport::Server::builder()
+        .concurrency_limit_per_connection(256)
         .add_service(UserServiceServer::new(svc))
         .serve(addr)
         .await?;
-
     Ok(())
 }

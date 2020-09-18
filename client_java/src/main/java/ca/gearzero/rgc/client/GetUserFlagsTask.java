@@ -17,7 +17,8 @@ public class GetUserFlagsTask implements Runnable {
     @Override
     public void run() {
         while (--repeat > 0) {
-            client.getUserFlags(key);
+            int uf = client.getUserFlags(key);
+            assert(393==uf);
         }
     }
 }
