@@ -19,7 +19,7 @@ public class Client {
         ManagedChannel[] channels = new ManagedChannel[CONN_SIZE];
         UserServiceClient[] clients = new UserServiceClient[CONN_SIZE];
         for (int i = 0; i < CONN_SIZE; ++i) {
-            channels[i] = ManagedChannelBuilder.forTarget("localhost:50051")
+            channels[i] = ManagedChannelBuilder.forTarget(args[0])
                     .usePlaintext()
                     .build();
             clients[i] = new UserServiceClient(channels[i]);
